@@ -25,23 +25,158 @@
 }
 
 .dark {
-  --bg: #141420;
-  --surface: #1E1E2E;
-  --text-primary: #E8E8E0;
-  --text-secondary: #9A9A9A;
-  --border: #2A2A3E;
+  --bg: #0C0C14;
+  --surface: #161622;
+  --text-primary: #EAEAE4;
+  --text-secondary: #8A8A9A;
+  --border: #222236;
   --counsel-bg: #1A2A2A;
-}
-
-* {
-  transition-duration: 200ms;
-  transition-timing-function: ease;
 }
 
 body {
   font-family: 'Karla', sans-serif;
   background-color: var(--bg);
   color: var(--text-primary);
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Hero gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, #238E91 40%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero background glows */
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+}
+
+.dark .hero-glow {
+  opacity: 0.12;
+}
+
+.hero-glow-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--primary);
+  top: -200px;
+  left: -100px;
+  animation: glow-drift-1 20s ease-in-out infinite;
+}
+
+.hero-glow-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent);
+  top: -100px;
+  right: -150px;
+  animation: glow-drift-2 25s ease-in-out infinite;
+}
+
+.hero-glow-3 {
+  width: 400px;
+  height: 400px;
+  background: #8B5CF6;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: glow-drift-3 18s ease-in-out infinite;
+}
+
+.cta-glow {
+  position: absolute;
+  width: 600px;
+  height: 300px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.08;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dark .cta-glow {
+  opacity: 0.06;
+}
+
+/* Judge floating animation */
+.judge-float {
+  animation: judge-float 6s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes glow-drift-1 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(60px, 30px); }
+  66% { transform: translate(-30px, 60px); }
+}
+
+@keyframes glow-drift-2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-50px, 40px); }
+  66% { transform: translate(30px, -30px); }
+}
+
+@keyframes glow-drift-3 {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-40px); }
+}
+
+@keyframes judge-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out both;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out both;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
 }
 
 /* Scrollbar styling */
@@ -60,9 +195,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
-}
-
-/* Remove transition from all elements to prevent flash on load */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
 }
